@@ -1,6 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import Heroimg from "../../assets/hero.png";
+import HeroBG from "../../assets/heroBG.png" 
+import Heroimg1 from "../../assets/project-bg.png" 
 import { IoIosArrowForward } from "react-icons/io";
 import { MdArrowBackIosNew } from "react-icons/md";
 const Hero = () => {
@@ -15,13 +17,13 @@ const Hero = () => {
       title: "Cook with style",
       description:
         "Discover modern designs that bring functionality and beauty together.",
-      image: "/path-to-image2.jpg",
+      image: Heroimg1,
     },
     {
       title: "Your dream kitchen awaits",
       description:
         "Personalize your space with custom designs and top-notch finishes.",
-      image: "/path-to-image3.jpg",
+      image:Heroimg,
     },
   ];
 
@@ -36,23 +38,30 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative w-full h-screen bg-gray-900">
-      <div className="hero-container group relative flex items-center h-full bg-[url('/src/assets/heroBG.png')] bg-cover bg-center">
-        {/* Text Section */}
-        <div className="w-2/3 px-12 left-96 r-0 absolute z-10 flex flex-col justify-center">
-          <h1 className="text-4xl font-bold text-white">
+    <div className="relative w-full lg:h-screen md:h-screen bg-gray-900 overflow-hidden h-[300px]">
+      <div className="hero-container group relative flex items-center lg:h-full md:h-full h-[300px]">
+      <div className="pr-2 lg:w-full md:w-full lg:left-40 md:left-40 left-10 top-0 bottom-0  absolute z-10 flex flex-col justify-center">
+          <h1 className="lg:text-4xl md:text-1xl font-bold text-white">
             {slides[currentSlide].title}
           </h1>
-          <p className="mt-4 text-lg text-white">
+          <p className="mt-4 lg:text-lg md:text-base text-white">
             {slides[currentSlide].description}
           </p>
-          <button className="mt-6 px-6 py-2 text-white w-80 bg-gray-800 rounded-lg hover:bg-gray-700">
+          <button className="mt-6 px-6 py-2 text-gray-800 w-56 bg-white rounded-lg hover:bg-gray-700">
             Find a Showroom →
           </button>
         </div>
-
+        <div className="w-2/5 h-full relative">
+        {/* Text Section */}
+        <img
+            src={HeroBG}
+            alt="Slide Image"
+            className="w-full h-full object-cover"
+          />
+       
+        </div>
         {/* Image Section */}
-        <div className="w-2/3 h-full absolute z-0 right-0">
+        <div className="w-3/5 h-full absolute z-0 right-0">
           <img
             src={slides[currentSlide].image}
             alt="Slide Image"
