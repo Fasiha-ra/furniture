@@ -2,27 +2,9 @@
 import React from "react";
 import aboutus from "../../assets/aboutus.png";
 import { IoIosArrowRoundForward } from "react-icons/io";
-import price from "../../assets/price.png";
-import design from "../../assets/design.png";
-import team from "../../assets/team.png";
+import {AboutData} from "../Constant/Constant"
 const About = () => {
-  const data = [
-    {
-      img: price,
-      title: "Reasonable Prices",
-      para: "We produce furniture to fulfill needs of all people and offer it at affordable and fair prices",
-    },
-    {
-      img: design,
-      title: "Exclusive design",
-      para: "Mixture of imagination, experience and professionalism is the secret of our design!",
-    },
-    {
-      img: team,
-      title: "Professional Team",
-      para: "We are proud of our amicable, professional and always developing team!",
-    },
-  ];
+ 
   return (
     <>
       <div className="container mx-auto w-full p-4 flex items-center justify-center flex-wrap gap-8 mb-5 lg:flex-nowrap ">
@@ -51,7 +33,7 @@ const About = () => {
         </div>
       </div>
       <div className="container grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 mt-0 mb-6 mx-auto">
-        {data.map((item, ind) => (
+        {AboutData.map((item, ind) => (
           <div key={ind} className="p-4 flex justify-center items-start gap-3">
             <img src={item.img} alt="image" />
             <div>
