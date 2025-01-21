@@ -1,30 +1,24 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { counterData } from "../Constant/Constant";
 
 const Projects = () => {
-  const counterData = [
-    { count: 0, target: 25, title: "Interior Design" },
-    { count: 0, target: 93, title: "Architecture" },
-    { count: 0, target: 48, title: "Construction" },
-    { count: 0, target: 68, title: "Projects Done" },
-  ];
   const [inView, setInView] = useState(false);
   const [counters, setCounters] = useState(counterData);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const counterRef = useRef(null);
 
-  // Intersection Observer to check when the section comes into view
+  // Callback for handling intersection
+  const handleIntersection = useCallback((entries) => {
+    const [entry] = entries;
+    if (entry.isIntersecting) {
+      setInView(true);
+    }
+  }, []);
+
+  // Initialize IntersectionObserver
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting) {
-          setInView(true); // Trigger counters when in view
-        }
-      },
-      { threshold: 0.5 } // Trigger when 50% of the section is in view
-    );
+    const observer = new IntersectionObserver(handleIntersection, { threshold: 0.5 });
 
     if (counterRef.current) {
       observer.observe(counterRef.current);
@@ -35,30 +29,34 @@ const Projects = () => {
         observer.unobserve(counterRef.current);
       }
     };
-  }, []);
+  }, [handleIntersection]);
 
-  useEffect(() => {
+  // Callback to start counting
+  const startCounting = useCallback(() => {
     if (inView) {
-      // Increment the counter for each item
-      const intervalIds = counters.map((counter, index) => {
-        return setInterval(() => {
+      const intervalIds = counters.map((_, index) =>
+        setInterval(() => {
           setCounters((prevCounters) => {
             const newCounters = [...prevCounters];
             if (newCounters[index].count < newCounters[index].target) {
-              newCounters[index].count += 1; // Increment count
+              newCounters[index].count += 1;
             } else {
-              clearInterval(intervalIds[index]); // Stop when target is reached
+              clearInterval(intervalIds[index]);
             }
             return newCounters;
           });
-        }, 50); // Adjust this value for speed of counting
-      });
+        }, 50)
+      );
 
-      return () => {
-        intervalIds.forEach((id) => clearInterval(id)); // Clean up intervals
-      };
+      return () => intervalIds.forEach((id) => clearInterval(id));
     }
   }, [inView, counters]);
+
+  // Trigger counting when inView changes
+  useEffect(() => {
+    const cleanup = startCounting();
+    return cleanup;
+  }, [startCounting]);
 
   return (
     <div className="relative h-full lg:h-[300px] bg-[url('/src/assets/project-bg.png')] bg-cover bg-center mb-10">
@@ -70,7 +68,9 @@ const Projects = () => {
         className="container relative z-10 text-white p-8 my-8 mx-auto flex flex-col sm:flex-col md:flex-row lg:flex-row justify-evenly gap-6 items-center"
         ref={counterRef}
       >
-       <button className="flex gap-3 items-center bg-gray-900  text-base text-white rounded-full py-4 px-12  uppercase hover:bg-primary transition-colors duration-300">Contact us</button>
+        <button className="flex gap-3 items-center bg-gray-900  text-base text-white rounded-full py-4 px-12  uppercase hover:bg-primary transition-colors duration-300">
+          Contact us
+        </button>
         <div className="mt-4 grid grid-cols-2 divide-y divide-gray-600 md:grid-cols-2">
           {counters.map((counter, index) => (
             <div

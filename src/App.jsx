@@ -6,6 +6,10 @@ import Projects from './components/Projects'
 import Hero from './components/Hero'
 import Services from './components/Services'
 import Attributes from './components/Attributes'
+import WorkingArea from './components/WorkingArea'
+import Testimonial from './components/Testimonial'
+import ContactUs from './components/ContactUs'
+import Footer from './components/Footer'
 
 const App = () => {
   return (
@@ -16,6 +20,10 @@ const App = () => {
       <Services/>
       <Attributes/>
       <Projects/>
+      <WorkingArea/>
+      <Testimonial/>
+      <ContactUs/>
+      <Footer/>
      
     </>
   )
