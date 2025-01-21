@@ -3,6 +3,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { servicesData } from "../Constant/Constant";
 const Services = () => {
   const settings = {
     dots: false,
@@ -27,38 +28,7 @@ const Services = () => {
     ],
   };
 
-  const sliderData = [
-    {
-      id: 1,
-      title: "We Visit You at Home",
-      para: "We will measure your kitchen, ask you questions and start the actual design process with you.",
-    },
-    {
-      id: 2,
-      title: "Preliminary Computer Designs",
-      para: "We will use the measurements we took of your kitchen to put together preliminary designs...",
-    },
-    {
-      id: 3,
-      title: "Begin The Detailed Design Process",
-      para: "Once we have the preliminary designs complete, we will begin to put together detailed designs..",
-    },
-    {
-      id: 4,
-      title: "Begin The Detailed Design Process",
-      para: "Once we have the preliminary designs complete, we will begin to put together detailed designs..",
-    },
-    {
-      id: 5,
-      title: "Begin The Detailed Design Process",
-      para: "Once we have the preliminary designs complete, we will begin to put together detailed designs..",
-    },
-    {
-      id: 6,
-      title: "Begin The Detailed Design Process",
-      para: "Once we have the preliminary designs complete, we will begin to put together detailed designs..",
-    },
-  ];
+ 
   return (
     <div className="bg-[url('/src/assets/services-bg.png')] bg-cover bg-center h-full bg-gray-50 ">
       <div className=" flex justify-between flex-col px-5 py-10 my-0 mx-auto lg:flex-row  ">
@@ -77,7 +47,7 @@ const Services = () => {
         </div>
         <div className="lg:w-3/4 py-8 overflow-hidden">
           <Slider {...settings}>
-            {sliderData.map((slide) => (
+            {servicesData.map((slide) => (
               <div key={slide.id} className="p-4 w-80">
                 <div className="bg-white min-h-96 h-full p-4 rounded-lg shadow-md  flex flex-col items-start justify-center">
                   <strong className="text-center  text-7xl text-gray-300 block mb-5">

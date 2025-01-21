@@ -6,13 +6,7 @@ import { Bars3Icon, XMarkIcon, ChevronDownIcon } from "@heroicons/react/24/outli
 import logo from "../../assets/logo.png";
 import { FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-const aboutMenu = [{ name: "About Us", href: "#" }, { name: "Mission and Team", href: "#" }];
-const laminateMenu = [
-  { name: "SHAKER", href: "#" },
-  { name: "SLAB", href: "#" },
-  { name: "RAISED PANEL", href: "#" },
-  { name: "3DL COLOURS", href: "#" },
-];
+import {aboutMenu, laminateMenu} from "../Constant/Constant"
 
 export default function Header() {
   const [menuState, setMenuState] = useState({
